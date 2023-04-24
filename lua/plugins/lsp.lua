@@ -78,6 +78,16 @@ return {
           },
         },
       },
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            diagnostics = {
+              enable = true,
+              disabled = { "unresolved-proc-macro" },
+            },
+          },
+        },
+      },
       terraformls = {},
     },
     -- you can do any additional lsp server setup here
