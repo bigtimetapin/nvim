@@ -3,7 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-    { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+    { "folke/neodev.nvim", opts = {} },
     "mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     {
@@ -29,8 +29,13 @@ return {
       },
       severity_sort = true,
     },
+    -- add any global capabilities here
+    capabilities = {},
     -- Automatically format on save
     autoformat = true,
+    -- Enable this to show formatters used in a notification
+    -- Useful for debugging formatter issues
+    format_notify = false,
     -- options for vim.lsp.buf.format
     -- `bufnr` and `filter` is handled by the LazyVim formatter,
     -- but can be also overridden when specified
@@ -105,11 +110,11 @@ return {
   },
   ---@param opts PluginLspOpts
   config = function(_, opts)
+    local Util = require("lazyvim.util")
     -- setup autoformat
-    require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
+    require("lazyvim.plugins.lsp.format").setup(opts)
     -- setup formatting and keymaps
-    require("lazyvim.util").on_attach(function(client, buffer)
-      require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
+    Util.on_attach(function(client, buffer)
       require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
     end)
 
@@ -134,7 +139,13 @@ return {
     vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
     local servers = opts.servers
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      require("cmp_nvim_lsp").default_capabilities(),
+      opts.capabilities or {}
+    )
 
     local function setup(server)
       local server_opts = vim.tbl_deep_extend("force", {
@@ -174,8 +185,15 @@ return {
     end
 
     if have_mason then
-      mlsp.setup({ ensure_installed = ensure_installed })
-      mlsp.setup_handlers({ setup })
+      mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+    end
+
+    if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
+      local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+      Util.lsp_disable("tsserver", is_deno)
+      Util.lsp_disable("denols", function(root_dir)
+        return not is_deno(root_dir)
+      end)
     end
   end,
 }
