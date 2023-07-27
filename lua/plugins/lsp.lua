@@ -47,6 +47,7 @@ return {
     ---@type lspconfig.options
     servers = {
       bashls = {},
+      bufls = {},
       elixirls = {
         filetypes = {
           "elixir",
@@ -85,6 +86,7 @@ return {
           },
         },
       },
+      protolint = {},
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
