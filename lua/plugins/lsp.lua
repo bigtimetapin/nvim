@@ -86,7 +86,6 @@ return {
           },
         },
       },
-      protolint = {},
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
