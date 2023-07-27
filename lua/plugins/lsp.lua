@@ -92,6 +92,11 @@ return {
               enable = true,
               disabled = { "unresolved-proc-macro" },
             },
+            cargo = {
+              buildScripts = {
+                enable = true
+              }
+            }
           },
         },
       },
