@@ -1,21 +1,13 @@
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
-
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
-
   -- change trouble config
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
+
+  -- disable trouble
+  { "folke/trouble.nvim", enabled = false },
 
   -- add symbols-outline
   {
@@ -71,6 +63,20 @@ return {
     },
   },
 
+  -- or you can return new options to override all the defaults
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return {
+        --[[add your custom lualine config here]]
+      }
+    end,
+  },
+
+  -- use mini.starter instead of alpha
+  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -101,7 +107,7 @@ return {
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
+            -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
