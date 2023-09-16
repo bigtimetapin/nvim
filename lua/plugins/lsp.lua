@@ -52,7 +52,29 @@ return {
     -- LSP Server Settings
     ---@type lspconfig.options
     servers = {
-      csharp_ls = {},
+      elixirls = {
+        filetypes = {
+          "elixir",
+          "eex",
+          "heex",
+          "surface",
+        },
+        settings = {
+          elixirLS = {
+            dialyzerEnabled = false,
+            fetchDeps = false,
+          },
+        },
+      },
+      html = {
+        filetypes = {
+          "html",
+          "heex",
+          "elixir",
+          "eelixir",
+          "html-eex",
+        },
+      },
       lua_ls = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         -- Use this to add any additional keymaps
