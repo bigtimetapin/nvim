@@ -116,7 +116,7 @@ return {
     end
     -- setup autoformat
     -- require("lazyvim.plugins.lsp.format").setup(opts)
-    require("lazyvim.util").format.setup()
+    Util.format.register(Util.lsp.formatter())
     -- setup formatting and keymaps
     Util.lsp.on_attach(function(client, buffer)
       require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
