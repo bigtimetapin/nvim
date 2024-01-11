@@ -52,6 +52,13 @@ return {
     -- LSP Server Settings
     ---@type lspconfig.options
     servers = {
+      cssls = {
+        filetypes = {
+          "css",
+          "scss",
+          "sass",
+        },
+      },
       elixirls = {
         filetypes = {
           "elixir",
