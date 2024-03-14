@@ -52,6 +52,7 @@ return {
     -- LSP Server Settings
     ---@type lspconfig.options
     servers = {
+      bufls = {},
       cssls = {
         filetypes = {
           "css",
