@@ -74,6 +74,7 @@ return {
           },
         },
       },
+      gleam = {},
       helm_ls = {
         logLevel = "debug",
         yamlls = {

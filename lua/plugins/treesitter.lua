@@ -7,6 +7,7 @@ return {
       "c",
       "eex",
       "elixir",
+      "gleam",
       "go",
       "gomod",
       "gowork",
