@@ -8,3 +8,7 @@
 vim.g.mix_format_on_save = 1
 vim.g.mix_format_silent_errors = 1
 vim.g.mix_format_options = "--check-equivalent"
+
+-- avante
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
