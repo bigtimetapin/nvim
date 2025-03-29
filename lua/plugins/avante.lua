@@ -8,7 +8,7 @@ return {
     cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
     claude = {
       endpoint = "https://api.anthropic.com",
-      model = "claude-3-5-sonnet-20241022",
+      model = "claude-3-7-sonnet-20250219",
       timeout = 30000, -- timeout in milliseconds
       temperature = 0,
       max_tokens = 4096,
