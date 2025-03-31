@@ -55,6 +55,11 @@ return {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
+        patterns = {
+          markdown = {
+            disable = false, -- Disable the pattern disabling feature that's causing the error
+          },
+        },
       },
       ft = { "markdown", "Avante" },
     },
