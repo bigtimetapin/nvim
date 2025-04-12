@@ -100,6 +100,18 @@ return {
           "html-eex",
         },
       },
+      kotlin_language_server = {
+        root_dir = require("lspconfig.util").root_pattern(
+          "build.gradle.kts",
+          "build.gradle",
+          "settings.gradle.kts",
+          ".git"
+        ),
+        -- Settings nested under 'kotlin' key as expected by the server/lspconfig types
+        settings = {
+          kotlin = {}, -- Start with an empty kotlin settings table
+        },
+      },
       lua_ls = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         -- Use this to add any additional keymaps
