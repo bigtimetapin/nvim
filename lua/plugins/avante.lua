@@ -15,10 +15,20 @@ return {
     -- },
     gemini = {
       endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-      model = "gemini-2.5-pro-exp-03-25",
+      -- model = "gemini-2.5-flash-preview-04-17",
+      model = "gemini-2.5-pro-preview-03-25",
       timeout = 30000, -- timeout in milliseconds
       temperature = 0,
       max_tokens = 40960,
+    },
+    openai = {
+      endpoint = "https://api.openai.com/v1",
+      model = "o4-mini-2025-04-16", -- your desired model (or use gpt-4o, etc.)
+      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+      temperature = 0,
+      max_completion_tokens = 40960, -- Increase this to include reasoning tokens (for reasoning models)
+      reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+      -- disabled_tools = { "python" },
     },
   },
   suggestion = {
