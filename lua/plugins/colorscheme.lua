@@ -33,11 +33,11 @@ return {
     opts = { style = "moon" },
   },
 
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyVim to load quiet
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "quiet",
     },
   },
 }
